@@ -1,8 +1,14 @@
 # NegaBot: Product-Criticism-Catcher
 NegaBot is an AI-powered tool designed to detect negative product reviews on X (formerly Twitter). Trained on thousands of labeled tweets, it accurately classifies whether a tweet expresses dissatisfaction about a product. This can help brands track product criticism in real-time.
 
-## Model Weights
-- [NegaBot](https://huggingface.co/jatinmehra/NegaBot-Product-Criticism-Catcher)
+<h2 align="center">Model Weights</h2>
+
+<p align="center">
+  <a href="https://huggingface.co/jatinmehra/NegaBot-Product-Criticism-Catcher">
+    <img width="512" src="https://github.com/user-attachments/assets/18669a85-e7fc-47f6-9183-e7ee33648930" alt="Model Image">
+  </a>
+</p>
+
 
 ## Dataset
 - Source: Kaggle
