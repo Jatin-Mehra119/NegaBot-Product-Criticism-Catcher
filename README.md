@@ -101,16 +101,38 @@ NegaBot is an AI-powered tool designed to detect negative product reviews on X (
     -   Outperformed BERT when trained on uncleaned data
     -   Larger capacity helps capture subtle sentiment patterns (e.g., sarcasm, emojis)
 
+## V2 Fine-Tuning: Tackling Sarcasm
+Despite high accuracy, the model initially struggled to differentiate **sarcastic negative tweets** from genuinely **positive tweets**. Sarcastic tweets were often misclassified as positive.
+
+To address this:
+-   **V2 Dataset**:
+    -   1,000 synthetic sarcastic negative tweets
+    -   1,000 synthetic positive tweets
+    -   2,000 real raw tweets (mixed sentiment)
+        
+-   **Fine-tuning**:
+    -   Conducted further training using **SmolLM360M-V2.ipynb**
+    -   Focused on helping the model identify sarcasm, irony, and sentiment subtleties
+    -   No data cleaning applied (raw tweets retained)
+        
+-   **Outcome**:
+    -   Model now reliably classifies sarcastic reviews as **negative**
+    -   General robustness to noisy and informal social media language significantly improved
+        
+-   **Model Weights**: Updated and uploaded to Hugging Face
+
 ### 🤔 Other Models Considered
 
 -   **RoBERTa**: More robust than BERT but slower to train; not chosen for baseline.
 -   **DistilBERT**: Lighter and faster but underperformed in early experiments.
 -   **SmolLM** provided an opportunity to test encoder vs decoder model styles on sentiment classification.
 
-### 📊 Performance Summary
+## 📊 Performance Summary
 
-| Model          | Type             | Parameters | Validation Acc | Test Acc | Notes                |
-|----------------|------------------|------------|----------------|----------|----------------------|
-| BERT-base      | Encoder-only     | ~110M      | ~0.89          | 0.84     | Cleaned tweets       |
-| SmolLM 360M    | Decoder-only     | ~360M      | 0.90           | **0.86** | Cleaned tweets 		|
-| SmolLM 360M    | Decoder-only     | ~360M      | 0.90           | **0.91** | Raw (uncleaned) tweets |
+
+| Model              | Type           | Parameters | Validation Acc | Test Acc | Notes                        |
+|--------------------|----------------|------------|----------------|----------|------------------------------|
+| BERT-base          | Encoder-only   | ~110M      | ~0.89          | 0.84     | Cleaned tweets               |
+| SmolLM 360M        | Decoder-only   | ~360M      | 0.90           | 0.86     | Cleaned tweets               |
+| SmolLM 360M        | Decoder-only   | ~360M      | 0.90           | 0.91     | Raw (uncleaned) tweets       |
+| **SmolLM 360M V2** | Decoder-only   | ~360M      | **0.95+**      | **0.94** | Sarcasm-aware fine-tuned     |
